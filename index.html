@@ -11,6 +11,9 @@
         body { background-color: var(--bg-color); color: var(--text-main); font-family: ui-sans-serif, system-ui, sans-serif; }
     </style>
     <script src="https://pl29792391.effectivecpmnetwork.com/a2/f3/1f/a2f31fd276aa4e34ebdd25aa1562d669.js"></script>
+    <!-- Ads Scripts vừa thêm -->
+    <script src="https://pl30444013.effectivecpmnetwork.com/c2/34/04/c2340462e82a89c46a102ffa4a87236a.js"></script>
+    <script src="https://pl30444012.effectivecpmnetwork.com/d4/d7/47/d4d747d3105ea90eeff216f46c9617d3.js"></script>
 </head>
 <body class="h-screen flex flex-col overflow-hidden">
 
@@ -94,7 +97,11 @@
                     body: JSON.stringify({ message: message }) 
                 });
                 const data = await res.json();
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                
+                // Đọc đúng dữ liệu 'reply' hoặc 'text' trả về từ api/chat.js
+                if (data && (data.reply || data.text)) {
+                    responseBox.innerText = "AI: " + (data.reply || data.text);
+                } else if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
                     responseBox.innerText = "AI: " + data.candidates[0].content.parts[0].text;
                 } else {
                     responseBox.innerText = "AI: No response from model.";
